@@ -29,6 +29,7 @@ tags: [smoke]
 - scrollUntilVisible:
     element:
       id: "save-goal"
+    centerElement: true
 - tapOn:
     id: "save-goal"
 

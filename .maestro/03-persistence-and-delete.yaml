@@ -21,6 +21,7 @@ name: Goals survive an app restart, and deleting asks first
 - scrollUntilVisible:
     element:
       id: "delete-goal"
+    centerElement: true
 - tapOn:
     id: "delete-goal"
 - assertVisible: "Delete goal\\?"

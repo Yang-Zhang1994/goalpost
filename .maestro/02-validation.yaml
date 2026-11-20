@@ -9,6 +9,7 @@ name: Invalid input is rejected with field messages
 - scrollUntilVisible:
     element:
       id: "save-goal"
+    centerElement: true
 - tapOn:
     id: "save-goal"
 - assertVisible: "Give the goal a name."
@@ -19,6 +20,7 @@ name: Invalid input is rejected with field messages
 - scrollUntilVisible:
     element:
       id: "goal-month"
+    centerElement: true
     direction: UP
 - tapOn:
     id: "goal-month"
@@ -27,6 +29,7 @@ name: Invalid input is rejected with field messages
 - scrollUntilVisible:
     element:
       id: "save-goal"
+    centerElement: true
 - tapOn:
     id: "save-goal"
 - assertVisible: "Pick a month after this one."
