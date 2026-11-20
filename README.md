@@ -66,8 +66,28 @@ Returns compound monthly at `r = (1 + annual)^(1/12) − 1`, with deposits at th
 
 GitHub Actions runs type checks, ESLint, the tests, and an Android + web bundle on every push and pull request.
 
+### End-to-end on an Android emulator (Maestro)
+
+`.maestro/` holds 4 Maestro flows that drive the real app the way a user would:
+
+| Flow | What it checks |
+|---|---|
+| `01-create-goal` | Fill in the form, save, see the goal and portfolio summary on the list, open it, record a $100 contribution and see the balance go from $500 to $600 |
+| `02-validation` | Saving an empty form shows each field's message; a past month is refused; nothing is saved |
+| `03-persistence-and-delete` | Sample goals survive killing and relaunching the app; delete asks first, Cancel keeps the goal, Delete removes it, and the removal survives a relaunch too |
+| `04-learn` | Lessons on the Learn tab expand to show their content |
+
+The **Android E2E** workflow builds a release APK (`expo prebuild` + Gradle), boots an Android 13 emulator
+in GitHub Actions, installs the APK, and runs every flow; the JUnit report and failure screenshots are kept
+as a build artifact. Two things it took to make this reliable on CI: a short subflow that dismisses the
+system "isn't responding" dialog a slow emulator sometimes shows, and centring each scrolled-to button so
+taps never land on the navigation bar.
+
+To run the flows locally, install [Maestro](https://maestro.mobile.dev), start an emulator or plug in a phone
+with USB debugging, install a build, then `maestro test .maestro`. iOS is not covered yet.
+
 ## Next steps
 
 - Edit a goal, and keep a contribution history per goal.
 - Sync to a small backend so goals follow the user across devices.
-- Add Maestro or Detox end-to-end tests on an Android emulator.
+- Run the Maestro flows on iOS too (needs a macOS runner).
