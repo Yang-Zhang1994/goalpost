@@ -1,0 +1,38 @@
+appId: io.github.yangzhang1994.goalpost
+name: Goals survive an app restart, and deleting asks first
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    id: "sample-goals"
+- assertVisible: "Emergency fund"
+- assertVisible: "First home \\(FHSA\\)"
+
+# Kill and relaunch without clearing data: goals are read back from storage.
+- stopApp
+- launchApp
+- assertVisible: "Emergency fund"
+- assertVisible: "saved across 2 goals · \\$650/mo planned"
+
+# Delete asks for confirmation; Cancel keeps the goal.
+- tapOn: "Emergency fund"
+- scrollUntilVisible:
+    element:
+      id: "delete-goal"
+- tapOn:
+    id: "delete-goal"
+- assertVisible: "Delete goal\\?"
+- tapOn: "(?i)cancel"
+- assertVisible:
+    id: "delete-goal"
+- tapOn:
+    id: "delete-goal"
+- tapOn: "(?i)delete"
+- assertNotVisible: "Emergency fund"
+- assertVisible: "saved across 1 goal · \\$400/mo planned"
+
+# The delete is saved too.
+- stopApp
+- launchApp
+- assertVisible: "First home \\(FHSA\\)"
+- assertNotVisible: "Emergency fund"

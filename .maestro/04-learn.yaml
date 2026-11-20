@@ -1,0 +1,12 @@
+appId: io.github.yangzhang1994.goalpost
+name: Learn tab lessons expand
+---
+- launchApp:
+    clearState: true
+- tapOn: "Learn"
+- assertVisible: "TFSA: tax-free growth"
+- assertVisible: "FHSA: saving for a first home"
+- tapOn: "FHSA: saving for a first home"
+- assertVisible: ".*\\$40,000.*"
+- tapOn: "Goals"
+- assertVisible: "Set your first goal"

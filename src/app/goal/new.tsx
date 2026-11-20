@@ -30,12 +30,13 @@ export default function NewGoalScreen() {
   return (
     <KeyboardAvoidingView style={styles.screen} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <ScrollView contentContainerStyle={styles.form} keyboardShouldPersistTaps="handled">
-        <Field label="Goal name" value={form.name} onChangeText={set('name')} placeholder="e.g. Emergency fund" error={errors.name} />
-        <Field label="Target amount ($)" value={form.target} onChangeText={set('target')} keyboardType="numeric" placeholder="e.g. 5000" error={errors.target} />
-        <Field label="Saved so far ($)" value={form.saved} onChangeText={set('saved')} keyboardType="numeric" placeholder="0" error={errors.saved} />
-        <Field label="Monthly contribution ($)" value={form.monthly} onChangeText={set('monthly')} keyboardType="numeric" placeholder="e.g. 200" error={errors.monthly} />
+        <Field label="Goal name" testID="goal-name" value={form.name} onChangeText={set('name')} placeholder="e.g. Emergency fund" error={errors.name} />
+        <Field label="Target amount ($)" testID="goal-target" value={form.target} onChangeText={set('target')} keyboardType="numeric" placeholder="e.g. 5000" error={errors.target} />
+        <Field label="Saved so far ($)" testID="goal-saved" value={form.saved} onChangeText={set('saved')} keyboardType="numeric" placeholder="0" error={errors.saved} />
+        <Field label="Monthly contribution ($)" testID="goal-monthly" value={form.monthly} onChangeText={set('monthly')} keyboardType="numeric" placeholder="e.g. 200" error={errors.monthly} />
         <Field
           label="Target month"
+          testID="goal-month"
           value={form.targetMonth}
           onChangeText={set('targetMonth')}
           placeholder="e.g. 2028-06"
@@ -65,7 +66,7 @@ export default function NewGoalScreen() {
           <Text style={styles.hint}>Short goals usually suit a conservative mix. See the Learn tab.</Text>
         </View>
 
-        <Pressable style={({ pressed }) => [styles.save, pressed && { opacity: 0.85 }]} onPress={save} accessibilityRole="button">
+        <Pressable style={({ pressed }) => [styles.save, pressed && { opacity: 0.85 }]} onPress={save} accessibilityRole="button" testID="save-goal">
           <Text style={styles.saveText}>Save goal</Text>
         </Pressable>
       </ScrollView>

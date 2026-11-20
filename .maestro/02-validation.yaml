@@ -1,0 +1,35 @@
+appId: io.github.yangzhang1994.goalpost
+name: Invalid input is rejected with field messages
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    id: "add-goal"
+- scrollUntilVisible:
+    element:
+      id: "save-goal"
+- tapOn:
+    id: "save-goal"
+- assertVisible: "Give the goal a name."
+- assertVisible: "Enter a target above \\$0\\."
+- assertVisible: "Use YYYY-MM, e.g. 2028-06."
+
+# A month in the past is refused too.
+- scrollUntilVisible:
+    element:
+      id: "goal-month"
+    direction: UP
+- tapOn:
+    id: "goal-month"
+- inputText: "2020-01"
+- hideKeyboard
+- scrollUntilVisible:
+    element:
+      id: "save-goal"
+- tapOn:
+    id: "save-goal"
+- assertVisible: "Pick a month after this one."
+
+# Nothing was saved.
+- back
+- assertVisible: "Set your first goal"

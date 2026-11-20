@@ -43,6 +43,7 @@ export default function GoalsScreen() {
             <Pressable
               onPress={() => dispatch({ type: 'loaded', goals: sampleGoals(now) })}
               accessibilityRole="button"
+              testID="sample-goals"
               style={styles.sample}
             >
               <Text style={styles.sampleText}>Try two sample goals</Text>
@@ -56,6 +57,7 @@ export default function GoalsScreen() {
         onPress={() => router.push('/goal/new')}
         accessibilityRole="button"
         accessibilityLabel="Add goal"
+        testID="add-goal"
       >
         <Text style={styles.fabText}>+ Add goal</Text>
       </Pressable>

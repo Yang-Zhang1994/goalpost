@@ -1,0 +1,53 @@
+appId: io.github.yangzhang1994.goalpost
+name: Create a goal, open it, and record a contribution
+tags: [smoke]
+---
+- launchApp:
+    clearState: true
+- assertVisible: "Set your first goal"
+
+- tapOn:
+    id: "add-goal"
+- tapOn:
+    id: "goal-name"
+- inputText: "Trip to Japan"
+- tapOn:
+    id: "goal-target"
+- inputText: "5000"
+- tapOn:
+    id: "goal-saved"
+- inputText: "500"
+- tapOn:
+    id: "goal-monthly"
+- inputText: "200"
+- tapOn:
+    id: "goal-month"
+- inputText: "2035-06"
+- hideKeyboard
+- tapOn: "Growth"
+- scrollUntilVisible:
+    element:
+      id: "save-goal"
+- tapOn:
+    id: "save-goal"
+
+# Back on the list: the new goal and the portfolio summary.
+- assertVisible: "Trip to Japan"
+- assertVisible: "\\$500"
+- assertVisible: "saved across 1 goal · \\$200/mo planned"
+
+- tapOn: "Trip to Japan"
+- assertVisible: "Projection · .+"
+- assertVisible:
+    id: "saved-amount"
+    text: "\\$500"
+- tapOn:
+    id: "contribution-amount"
+- inputText: "100"
+- hideKeyboard
+- tapOn:
+    id: "add-contribution"
+- assertVisible:
+    id: "saved-amount"
+    text: "\\$600"
+- takeScreenshot: goal-detail

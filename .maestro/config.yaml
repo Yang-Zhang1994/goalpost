@@ -1,0 +1,5 @@
+# Runs every flow in this folder, in file-name order.
+flows:
+  - "*.yaml"
+executionOrder:
+  continueOnFailure: true

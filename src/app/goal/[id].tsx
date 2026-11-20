@@ -56,7 +56,7 @@ export default function GoalDetailScreen() {
       <Stack.Screen options={{ title: goal.name }} />
 
       <View style={styles.card}>
-        <Text style={styles.big}>{formatMoney(goal.saved)}</Text>
+        <Text style={styles.big} testID="saved-amount">{formatMoney(goal.saved)}</Text>
         <Text style={styles.muted}>
           of {formatMoney(goal.target)} by {goal.targetMonth} · {months} months left
         </Text>
@@ -83,18 +83,19 @@ export default function GoalDetailScreen() {
       <View style={styles.card}>
         <Field
           label="Record a contribution ($)"
+          testID="contribution-amount"
           value={amount}
           onChangeText={setAmount}
           keyboardType="numeric"
           placeholder="e.g. 100"
           error={amountError}
         />
-        <Pressable style={({ pressed }) => [styles.primary, pressed && { opacity: 0.85 }]} onPress={contribute} accessibilityRole="button">
+        <Pressable style={({ pressed }) => [styles.primary, pressed && { opacity: 0.85 }]} onPress={contribute} accessibilityRole="button" testID="add-contribution">
           <Text style={styles.primaryText}>Add to saved</Text>
         </Pressable>
       </View>
 
-      <Pressable onPress={remove} style={styles.delete} accessibilityRole="button">
+      <Pressable onPress={remove} style={styles.delete} accessibilityRole="button" testID="delete-goal">
         <Text style={styles.deleteText}>Delete goal</Text>
       </Pressable>
       <Text style={styles.disclaimer}>Illustrative return ranges, not forecasts or advice.</Text>
