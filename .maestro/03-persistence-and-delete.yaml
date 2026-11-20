@@ -3,6 +3,7 @@ name: Goals survive an app restart, and deleting asks first
 ---
 - launchApp:
     clearState: true
+- runFlow: subflows/dismiss-system-dialog.yaml
 - tapOn:
     id: "sample-goals"
 - assertVisible: "Emergency fund"
@@ -11,6 +12,7 @@ name: Goals survive an app restart, and deleting asks first
 # Kill and relaunch without clearing data: goals are read back from storage.
 - stopApp
 - launchApp
+- runFlow: subflows/dismiss-system-dialog.yaml
 - assertVisible: "Emergency fund"
 - assertVisible: "saved across 2 goals · \\$650/mo planned"
 
@@ -34,5 +36,6 @@ name: Goals survive an app restart, and deleting asks first
 # The delete is saved too.
 - stopApp
 - launchApp
+- runFlow: subflows/dismiss-system-dialog.yaml
 - assertVisible: "First home \\(FHSA\\)"
 - assertNotVisible: "Emergency fund"

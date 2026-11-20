@@ -3,6 +3,7 @@ name: Invalid input is rejected with field messages
 ---
 - launchApp:
     clearState: true
+- runFlow: subflows/dismiss-system-dialog.yaml
 - tapOn:
     id: "add-goal"
 - scrollUntilVisible:

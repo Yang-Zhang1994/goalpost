@@ -3,6 +3,7 @@ name: Learn tab lessons expand
 ---
 - launchApp:
     clearState: true
+- runFlow: subflows/dismiss-system-dialog.yaml
 - tapOn: "Learn"
 - assertVisible: "TFSA: tax-free growth"
 - assertVisible: "FHSA: saving for a first home"

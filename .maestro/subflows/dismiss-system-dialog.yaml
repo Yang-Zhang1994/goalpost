@@ -1,0 +1,9 @@
+appId: io.github.yangzhang1994.goalpost
+# A slow CI emulator can show "<app> isn't responding" for the system launcher over our app.
+# This is not a Goalpost failure, so wait it out and carry on.
+---
+- runFlow:
+    when:
+      visible: ".*isn't responding"
+    commands:
+      - tapOn: "Wait"

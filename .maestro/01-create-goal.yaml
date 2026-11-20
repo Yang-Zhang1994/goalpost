@@ -4,6 +4,7 @@ tags: [smoke]
 ---
 - launchApp:
     clearState: true
+- runFlow: subflows/dismiss-system-dialog.yaml
 - assertVisible: "Set your first goal"
 
 - tapOn:
